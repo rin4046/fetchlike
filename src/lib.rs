@@ -1,13 +1,11 @@
+pub mod error;
+pub mod macros;
+
+use error::Error;
 use hyper::{body::Buf, Client};
+pub use hyper::{Body, HeaderMap, Method, Uri};
 use hyper_tls::HttpsConnector;
 use serde::de::DeserializeOwned;
-
-pub mod error_handling;
-pub mod macros;
-pub mod macros2;
-
-pub use error_handling::Error;
-pub use hyper::{Body, HeaderMap, Method, Uri};
 
 pub async fn fetch(request: Request) -> Result<Response, Error> {
     let client = Client::builder().build(HttpsConnector::new());
@@ -47,8 +45,9 @@ impl Default for Request {
     }
 }
 
+#[derive(Debug)]
 pub struct Response {
-    response: hyper::Response<hyper::Body>,
+    pub response: hyper::Response<hyper::Body>,
 }
 
 impl Response {
