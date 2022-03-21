@@ -1,8 +1,9 @@
 [package]
 name = "fetchlike"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["rin4046 <rin@rinrin.me>"]
 description = "A function and macros like JavaScript's Fetch API."
+repository = "https://github.com/rin4046/fetchlike"
 license = "MIT"
 edition = "2021"
 

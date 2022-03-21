@@ -2,11 +2,11 @@ use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum Error {
-    #[error("{0}")]
+    #[error(transparent)]
     HyperError(hyper::Error),
-    #[error("{0}")]
+    #[error(transparent)]
     SerdeJsonError(serde_json::Error),
-    #[error("{0}")]
+    #[error(transparent)]
     FromUtf8Error(std::string::FromUtf8Error),
 }
 
