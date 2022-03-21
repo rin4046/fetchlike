@@ -15,7 +15,7 @@ macro_rules! _parse_tree {
     };
     ($method:ident, $headers:ident, $body:ident, headers: {$($field:tt: $value:expr),*}, $($tree:tt)+) => {
         fetchlike::_parse_tree!($method, $headers, $body, headers: {$($field: $value),*});
-        fetchlike::_parse_tree!($method, $headers, $body, $($tree)*);
+        fetchlike::_parse_tree!($method, $headers, $body, $($tree)+);
     };
 
     ($method:ident, $headers:ident, $body:ident, $field:ident: $value:expr) => {
@@ -48,12 +48,12 @@ macro_rules! fetch_macro {
             ..Default::default()
         })
     };
-    ($url:expr, {$($tree:tt)*}) => {
+    ($url:expr, {$($tree:tt)+}) => {
         {
             let _method = fetchlike::Method::GET;
             let _headers: Option<fetchlike::HeaderMap> = None;
             let _body = fetchlike::Body::empty();
-            fetchlike::_parse_tree!(_method, _headers, _body, $($tree)*);
+            fetchlike::_parse_tree!(_method, _headers, _body, $($tree)+);
 
             fetchlike::fetch(fetchlike::Request {
                 url: $url.parse()?,

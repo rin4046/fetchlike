@@ -4,6 +4,7 @@ use serde::de::DeserializeOwned;
 
 pub mod error_handling;
 pub mod macros;
+pub mod macros2;
 
 pub use error_handling::Error;
 pub use hyper::{Body, HeaderMap, Method, Uri};
